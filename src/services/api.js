@@ -3,7 +3,10 @@
  * Handles all API requests to the backend
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Use environment variable if set, otherwise detect based on mode
+// In production, API is served from same origin. In dev, use localhost:3001
+const API_BASE_URL = import.meta.env.VITE_API_URL ||
+  (import.meta.env.MODE === 'production' ? window.location.origin : 'http://localhost:3001');
 
 class ApiService {
     /**
