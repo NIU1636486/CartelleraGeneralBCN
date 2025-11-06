@@ -1,0 +1,68 @@
+===============================================
+QUICK GUIDE: Enable Movie Posters & Runtime
+===============================================
+
+You're currently seeing:
+❌ No movie posters (grey placeholders)
+❌ No runtime/duration
+❌ No director names
+
+To fix this, get a FREE TMDB API key:
+
+STEP 1: Get API Key (5 minutes)
+--------------------------------
+1. Go to: https://www.themoviedb.org/signup
+2. Create free account
+3. Go to: https://www.themoviedb.org/settings/api
+4. Click "Create" → Select "Developer"
+5. Fill form (use "Personal" or "Educational")
+
+   IMPORTANT - For the Website/Application URL field:
+   - If testing locally, use: http://localhost:5173
+   - Or use: http://localhost
+   - Or leave it blank (not always required)
+   - They usually approve local/testing URLs quickly
+
+6. Copy your API key (you'll get it immediately or via email)
+
+STEP 2: Set the API Key
+-----------------------
+BEFORE starting the server, run:
+
+    export TMDB_API_KEY=your_api_key_here
+
+Replace "your_api_key_here" with your actual key.
+
+STEP 3: Clear Old Data
+-----------------------
+Delete the cached data so it re-fetches with TMDB:
+
+    rm server/data/*.json
+
+STEP 4: Restart Server
+----------------------
+    npm run server
+
+You should see:
+    ✅ TMDB service enabled
+
+Instead of:
+    ⚠️  TMDB API key not configured
+
+STEP 5: Refresh in Browser
+---------------------------
+Open the app and click the "Refresh" button.
+Watch the server logs for:
+    Enriching 114 movies with metadata...
+    ✅ Successfully enriched 95/114 movies
+
+Now you'll see:
+✅ Movie posters
+✅ Runtime (duration)
+✅ Director names
+✅ Release years
+
+===============================================
+Without TMDB: App still works, just no metadata
+With TMDB: Full movie information with posters!
+===============================================
