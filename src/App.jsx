@@ -93,6 +93,10 @@ function App() {
       </main>
 
       <TheaterLegend theaters={theaters} />
+
+      <footer className="text-center py-4 text-xs text-gray-400">
+        Pol Riubrogent, 2025
+      </footer>
     </div>
   );
 }
