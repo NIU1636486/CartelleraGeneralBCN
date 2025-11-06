@@ -1,7 +1,7 @@
-import { theaterConfig } from '../data/theaterConfig';
+import { theaterConfig, getTheaterFallbackImage } from '../data/theaterConfig';
 
 const MovieList = ({ movie }) => {
-  const posterUrl = movie.poster || 'https://via.placeholder.com/200x300/6b7280/ffffff?text=No+Poster';
+  const posterUrl = movie.poster || getTheaterFallbackImage(movie.theater);
   const hasPoster = Boolean(movie.poster);
 
   return (
@@ -10,9 +10,9 @@ const MovieList = ({ movie }) => {
         <img
           src={posterUrl}
           alt={movie.title}
-          className={`w-16 sm:w-24 h-24 sm:h-36 object-cover rounded flex-shrink-0 ${!hasPoster ? 'opacity-50' : ''}`}
+          className={`w-16 sm:w-24 h-24 sm:h-36 object-cover rounded flex-shrink-0 ${!hasPoster ? 'opacity-90' : ''}`}
           onError={(e) => {
-            e.target.src = 'https://via.placeholder.com/200x300/6b7280/ffffff?text=No+Poster';
+            e.target.src = getTheaterFallbackImage(movie.theater);
           }}
         />
         <div className="flex-1 min-w-0">

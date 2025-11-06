@@ -1,8 +1,8 @@
-import { theaterConfig } from '../data/theaterConfig';
+import { theaterConfig, getTheaterFallbackImage } from '../data/theaterConfig';
 
 const MovieCard = ({ movie }) => {
   // Fallback for missing poster
-  const posterUrl = movie.poster || 'https://via.placeholder.com/500x750/6b7280/ffffff?text=No+Poster';
+  const posterUrl = movie.poster || getTheaterFallbackImage(movie.theater);
   const hasPoster = Boolean(movie.poster);
 
   return (
@@ -11,9 +11,9 @@ const MovieCard = ({ movie }) => {
         <img
           src={posterUrl}
           alt={movie.title}
-          className={`w-full h-64 sm:h-72 object-cover ${!hasPoster ? 'opacity-50' : ''}`}
+          className={`w-full h-64 sm:h-72 object-cover ${!hasPoster ? 'opacity-90' : ''}`}
           onError={(e) => {
-            e.target.src = 'https://via.placeholder.com/500x750/6b7280/ffffff?text=No+Poster';
+            e.target.src = getTheaterFallbackImage(movie.theater);
           }}
         />
         <div className={`absolute top-2 right-2 ${theaterConfig[movie.theater]?.color || 'bg-gray-600'} text-white px-2 py-1 rounded text-xs font-semibold`}>
