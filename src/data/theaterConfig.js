@@ -67,17 +67,7 @@ export const getTheaterFallbackImage = (theaterName) => {
   const bgColor = theater?.bgColor || '#6b7280';
   const shortName = theaterName.split(' ')[0]; // Get first word (Filmoteca, Zumzeig, etc.)
 
-  const svg = `
-    <svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
-      <rect width="200" height="300" fill="${bgColor}"/>
-      <text x="100" y="130" font-family="Arial, sans-serif" font-size="48" fill="white" text-anchor="middle" opacity="0.3">
-        🎬
-      </text>
-      <text x="100" y="180" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">
-        ${shortName}
-      </text>
-    </svg>
-  `;
+  const svg = `<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="300" fill="${bgColor}"/><circle cx="100" cy="130" r="30" fill="white" opacity="0.3"/><text x="100" y="180" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">${shortName}</text></svg>`;
 
-  return `data:image/svg+xml;base64,${btoa(svg)}`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 };
