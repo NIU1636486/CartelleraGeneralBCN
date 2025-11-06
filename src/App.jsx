@@ -11,7 +11,7 @@ import { useMovieData } from './hooks/useMovieData';
 import { useMovieFilters } from './hooks/useMovieFilters';
 
 function App() {
-  const [viewMode, setViewMode] = useState("grid");
+  const [viewMode, setViewMode] = useState("list");
   const [showFilters, setShowFilters] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
