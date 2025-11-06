@@ -5,62 +5,59 @@ const MovieList = ({ movie }) => {
   const hasPoster = Boolean(movie.poster);
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
-      <div className="flex flex-col sm:flex-row gap-4">
+    <div className="bg-white rounded-lg shadow-md p-2 sm:p-4 hover:shadow-lg transition-shadow duration-300">
+      <div className="flex gap-2 sm:gap-4">
         <img
           src={posterUrl}
           alt={movie.title}
-          className={`w-full sm:w-24 h-36 sm:h-36 object-cover rounded ${!hasPoster ? 'opacity-50' : ''}`}
+          className={`w-16 sm:w-24 h-24 sm:h-36 object-cover rounded flex-shrink-0 ${!hasPoster ? 'opacity-50' : ''}`}
           onError={(e) => {
             e.target.src = 'https://via.placeholder.com/200x300/6b7280/ffffff?text=No+Poster';
           }}
         />
-        <div className="flex-1">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2">
-            <div>
-              <h3 className="font-bold text-lg">{movie.title}</h3>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2 mb-1">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-sm sm:text-lg truncate">{movie.title}</h3>
               {movie.altTitle && (
-                <p className="text-gray-500 text-sm italic">{movie.altTitle}</p>
+                <p className="text-gray-500 text-xs sm:text-sm italic truncate">{movie.altTitle}</p>
               )}
               {movie.director && (
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-xs sm:text-sm truncate">
                   <i className="fas fa-user-tie mr-1"></i>
                   {movie.director}
                 </p>
               )}
             </div>
-            <span className={`${theaterConfig[movie.theater]?.color || 'bg-gray-600'} text-white px-3 py-1 rounded text-sm font-semibold mt-2 sm:mt-0 inline-block`}>
+            <span className={`${theaterConfig[movie.theater]?.color || 'bg-gray-600'} text-white px-2 py-0.5 rounded text-xs font-semibold flex-shrink-0`}>
               {movie.theater}
             </span>
           </div>
-          <div className="flex flex-wrap gap-2 mb-3 items-center">
+          <div className="flex flex-wrap gap-1 sm:gap-2 mb-1 sm:mb-2 items-center text-xs sm:text-sm text-gray-500">
             {movie.duration && (
               <>
-                <span className="text-sm text-gray-500">
+                <span>
                   <i className="far fa-clock mr-1"></i>
                   {movie.duration} min
                 </span>
-                <span className="text-sm text-gray-500">•</span>
+                <span className="hidden sm:inline">•</span>
               </>
             )}
             {movie.releaseYear && (
               <>
-                <span className="text-sm text-gray-500">{movie.releaseYear}</span>
-                <span className="text-sm text-gray-500">•</span>
+                <span>{movie.releaseYear}</span>
+                <span className="hidden sm:inline">•</span>
               </>
             )}
-            {movie.genre.map((g, idx) => (
-              <span key={idx} className="text-sm text-gray-500">
-                {g}{idx < movie.genre.length - 1 ? ', ' : ''}
-              </span>
-            ))}
+            <span className="truncate">
+              {movie.genre.slice(0, 2).join(', ')}
+            </span>
           </div>
-          <div className="flex flex-wrap gap-2">
-            <span className="text-sm text-gray-500 mr-2">Showtimes:</span>
+          <div className="flex flex-wrap gap-1 sm:gap-2">
             {movie.showtimes.map((time, idx) => (
               <button
                 key={idx}
-                className="bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-medium transition-colors"
+                className="bg-blue-50 hover:bg-blue-100 text-blue-700 px-2 py-0.5 sm:px-3 sm:py-1 rounded text-xs sm:text-sm font-medium transition-colors"
               >
                 {time}
               </button>
